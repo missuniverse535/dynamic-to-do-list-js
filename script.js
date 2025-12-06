@@ -1,77 +1,54 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-#todo-app {
-    width: 100%;
-    max-width: 400px;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-#task-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-#add-task-btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-#add-task-btn:hover {
-    background-color: #0056b3;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin-top: 20px;
-}
-
-li {
-    background-color: #eeeeee;
-    margin-top: 8px;
-    padding: 10px;
-    border-radius: 4px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.remove-btn {
-    cursor: pointer;
-    background-color: #ff6347;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 5px 10px;
-}
-
-.remove-btn:hover {
-    background-color: #d9534f;
-}
+// Setup Event listener for Page Load
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Select DOM Elements
+    const addButton = document.getElementById('add-task-btn');
+    const taskInput = document.getElementById('task-input');
+    const taskList = document.getElementById('task-list');
+    
+    // Create the addTask Function
+    function addTask() {
+        // Retrieve and trim the value from the task input field
+        const taskText = taskInput.value.trim();
+        
+        // Check if taskText is not empty
+        if (taskText === "") {
+            alert("Please enter a task!");
+            return;
+        }
+        
+        // Create a new li element
+        const listItem = document.createElement('li');
+        listItem.textContent = taskText;
+        
+        // Create a new button element for removing the task
+        const removeButton = document.createElement('button');
+        removeButton.textContent = "Remove";
+        removeButton.className = 'remove-btn';
+        
+        // Assign an onclick event to the remove button
+        removeButton.onclick = function() {
+            taskList.removeChild(listItem);
+        };
+        
+        // Append the remove button to the li element
+        listItem.appendChild(removeButton);
+        
+        // Append the li to taskList
+        taskList.appendChild(listItem);
+        
+        // Clear the task input field
+        taskInput.value = '';
+    }
+    
+    // Attach Event Listeners
+    // Add event listener to addButton
+    addButton.addEventListener('click', addTask);
+    
+    // Add event listener to taskInput for the 'keypress' event
+    taskInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            addTask();
+        }
+    });
+});
