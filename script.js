@@ -1,4 +1,4 @@
-// 1. Setup Event listener for Page Load
+1. Setup Event listener for Page Load
 document.addEventListener('DOMContentLoaded', function() {
     
     // 2. Select DOM Elements
