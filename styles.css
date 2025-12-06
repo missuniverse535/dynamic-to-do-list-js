@@ -1,93 +1,166 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    padding: 20px;
 }
 
 #todo-app {
     width: 100%;
-    max-width: 400px;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    max-width: 500px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 h1 {
     text-align: center;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+
+.input-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
 }
 
 #task-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    flex: 1;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+#task-input:focus {
+    outline: none;
+    border-color: #4d90fe;
+    box-shadow: 0 0 0 3px rgba(77, 144, 254, 0.1);
 }
 
 #add-task-btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
+    padding: 15px 25px;
+    background: linear-gradient(135deg, #4d90fe 0%, #357ae8 100%);
     color: white;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    border-radius: 8px;
     font-size: 16px;
-    transition: background-color 0.3s;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
 #add-task-btn:hover {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, #357ae8 0%, #2f5bb7 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(53, 122, 232, 0.3);
+}
+
+#add-task-btn:active {
+    transform: translateY(0);
 }
 
 ul {
-    list-style-type: none;
-    padding: 0;
-    margin-top: 20px;
+    list-style: none;
 }
 
-li {
-    background-color: #eeeeee;
-    margin-top: 8px;
-    padding: 10px;
-    border-radius: 4px;
+#task-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#task-list li {
+    background: #f8f9fa;
+    margin-bottom: 10px;
+    padding: 15px 20px;
+    border-radius: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: all 0.3s ease;
+    animation: fadeIn 0.3s ease;
+    border-left: 4px solid #4d90fe;
 }
 
-li:hover {
-    background-color: #e0e0e0;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#task-list li:hover {
+    background: #eef5ff;
     transform: translateX(5px);
+    transition: all 0.3s;
+}
+
+.task-text {
+    flex: 1;
+    font-size: 16px;
+    color: #333;
+    word-break: break-word;
 }
 
 .remove-btn {
-    cursor: pointer;
-    background-color: #ff6347;
+    padding: 8px 15px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%);
     color: white;
     border: none;
-    border-radius: 4px;
-    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
     font-size: 14px;
-    transition: background-color 0.3s;
+    font-weight: 600;
+    transition: all 0.3s;
+    margin-left: 10px;
+    white-space: nowrap;
 }
 
 .remove-btn:hover {
-    background-color: #d9534f;
+    background: linear-gradient(135deg, #ff4757 0%, #ff3838 100%);
+    transform: scale(1.05);
 }
 
-.empty-list {
+.empty-message {
     text-align: center;
     color: #666;
     font-style: italic;
     padding: 20px;
+    font-size: 16px;
+}
+
+/* Scrollbar styling */
+#task-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+#task-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+#task-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+#task-list::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
 }
