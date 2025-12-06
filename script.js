@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // 4. Task Creation and Removal
+        // Task Creation and Removal
         // Create a new li element
         const listItem = document.createElement('li');
         listItem.textContent = taskText;
@@ -40,42 +40,16 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Clear the task input field
         taskInput.value = '';
-        
-        // Focus back on the input field
-        taskInput.focus();
     }
     
     // 5. Attach Event Listeners
-    
     // Add event listener to addButton
     addButton.addEventListener('click', addTask);
     
-    // Add event listener to taskInput for the 'keypress' event
+    // Add event listener to taskInput for the "keypress" event
     taskInput.addEventListener('keypress', function(event) {
-        if (event.key === 'Enter') {
+        if (event.key === "Enter") {
             addTask();
         }
     });
-    
-    // Initialize with some example tasks (optional)
-    function initializeExampleTasks() {
-        const exampleTasks = ['Learn JavaScript', 'Build projects', 'Practice coding'];
-        
-        exampleTasks.forEach(task => {
-            const listItem = document.createElement('li');
-            listItem.textContent = task;
-            
-            const removeButton = document.createElement('button');
-            removeButton.textContent = "Remove";
-            removeButton.className = 'remove-btn';
-            
-            removeButton.onclick = function() {
-                taskList.removeChild(listItem);
-            };
-            
-            listItem.appendChild(removeButton);
-            taskList.appendChild(listItem);
-        });
-    }
-
 });
